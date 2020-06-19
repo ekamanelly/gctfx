@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import "materialize-css/dist/css/materialize.css";
 import { connect } from "react-redux";
-import setAuthHeader from "./util/setAuthHeader";
 import { loginFailure, loginSuccess } from "./redux/actions/authAction";
 
 //style
 import { useTransition, animated } from "react-spring";
 
-// components
-import Signin from "./components/Signin";
-import Home from "./components/Home";
-import About from "./components/About";
-import Signup from "./components/Signup";
-import fourOFour from "./components/FourOFour";
-import Dashboard from "./components/Dashboard";
-import DashboardA from "./components/DashboardA";
-import DashboardM from "./components/DashboardM";
-import User from "./components/User";
-// import authCheck from "./util/authCheck";
+
+import Home from "./components/home";
+import Portfolio from "./components/portfolio";
+import Blog from "./components/blog";
+import About from "./components/about";
+
 
 const App = (props) => {
   const history = useHistory();
   const { location } = history;
   const transitions = useTransition(location, (location) => location.pathname, {
-    from: { opacity: 0, transform: "translate3d(100%,0,0)" },
-    enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
-    leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
+    // from: { opacity: 0, transform: "translate3d(100%,0,0)" },
+    // enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
+    // leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
+     from: { opacity: 0, transform: "scale(0.6)" },
+    enter: { opacity: 1, transform:  "scale(1)" },
+    leave: { opacity: 0, transform:  "scale(0.6)" },
   });
 
   return transitions.map(({ item: location, props, key }) => (
@@ -34,13 +31,9 @@ const App = (props) => {
       <Switch location={location}>
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/user" component={User} />
-        <Route path="/dashboardm" component={DashboardM} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/dashboarda" component={DashboardA} />
-        <Route path="*" component={fourOFour} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/portfolio" component={Portfolio} />
+        
       </Switch>
     </animated.div>
   ));
