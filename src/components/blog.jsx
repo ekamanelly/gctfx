@@ -14,16 +14,8 @@ const home = (props) => {
    
     return (
         <>
-            <div style={{
-                right: 0,
-                // marginTop: "12rem",
-                // color: "white",
-                position: "absolute",
-                width: "100%",
-                // backgroundColor: "black",
-                // height: "200vh",
-            }}>
-                {/* <section className="our--tech">
+            <div className="absolute-div">
+                <section className="our--tech">
                     <div className="container">
                         <h3 className="indigo-text text-darken-4">Don't miss out!!!</h3>
                         <div className="row">
@@ -55,7 +47,7 @@ const home = (props) => {
 
                         </div>
                     </div>
-                </section> */}
+                </section>
                 <footer className="indigo darken-4"
                 //    style={{height:'20vh'}}
                 >

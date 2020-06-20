@@ -24,6 +24,32 @@ body {
   cursor: default;
   background-color: #dfdff3;
 }
+.absolute-div {
+  position: absolute;
+  width: 100%;
+  margin-top: 0;
+}
+.card-frame {
+  height: 86vh;
+  position: relative;
+}
+.passion .card-image {
+  height: 45rem;
+}
+.passion-img {
+  object-fit: cover;
+  height: 100%;
+}
+.passion-row {
+  transform: translate(10px, -2rem);
+}
+.passion-right-P {
+  transform: translate(10px, -12rem);
+}
+.passion-conplete-p {
+  transform: translate(0, 2.5rem);
+  font-size: 1.3rem;
+}
 
 .inspiration {
   padding-right: 1rem;
@@ -151,6 +177,13 @@ body {
   }
 }
 
-.passion .card-image span {
+.passion .card-image p {
   text-shadow: 0 0.2rem 0.6rem #0e0e0e;
+}
+
+@media only screen and (max-width: 650px) {
+  .passion-mobile-p {
+    font-size: 1.3rem;
+    line-height: 1.1;
+  }
 }
