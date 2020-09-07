@@ -7,12 +7,30 @@ import { loginFailure, loginSuccess } from "./redux/actions/authAction";
 //style
 import { useTransition, animated } from "react-spring";
 
-
 import Home from "./components/home";
 import Portfolio from "./components/portfolio";
 import Blog from "./components/blog";
 import About from "./components/about";
-
+import Consult from "./components/consult";
+// const Consult = (props) => {
+//   return (
+//     <>
+//       <div
+//         style={{
+//           right: 0,
+//           //   marginTop: "12rem",
+//           // color: "white",
+//           position: "absolute",
+//           width: "100%",
+//           // backgroundColor: "black",
+//           // height: "200vh",
+//         }}
+//       >
+//         <h1>Consult goes here</h1>
+//       </div>
+//     </>
+//   );
+// };
 
 const App = (props) => {
   const history = useHistory();
@@ -21,19 +39,19 @@ const App = (props) => {
     // from: { opacity: 0, transform: "translate3d(100%,0,0)" },
     // enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
     // leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
-     from: { opacity: 0, transform: "scale(0.6)" },
-    enter: { opacity: 1, transform:  "scale(1)" },
-    leave: { opacity: 0, transform:  "scale(0.6)" },
+    from: { opacity: 0, transform: "scale(0.6)" },
+    enter: { opacity: 1, transform: "scale(1)" },
+    leave: { opacity: 0, transform: "scale(0.6)" },
   });
 
   return transitions.map(({ item: location, props, key }) => (
     <animated.div key={key} style={props}>
       <Switch location={location}>
         <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
+        <Route path="/skill" component={About} />
         <Route path="/blog" component={Blog} />
         <Route path="/portfolio" component={Portfolio} />
-        
+        <Route path="/consult" conponent={Consult} />
       </Switch>
     </animated.div>
   ));

@@ -1,44 +1,129 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "materialize-css/dist/css/materialize.css";
+import M from "materialize-css";
+import { useState } from "react";
 import {
-    Link,
-} from "react-router-dom";
-import M from 'materialize-css'
-
-
+  Drawer,
+  List,
+  ListItemText,
+  ListItem,
+  IconButton,
+} from "@material-ui/core";
+import HomeWorkIcon from "@material-ui/icons/HomeWork";
+import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
+import InvertColorsRoundedIcon from "@material-ui/icons/InvertColorsRounded";
+import WbSunnyRoundedIcon from "@material-ui/icons/WbSunnyRounded";
+import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
+import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
+import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
+import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
+const useStyles = makeStyles({
+  paper: {
+    background: "#1a237e",
+    color: "white",
+  },
+});
 
 const Navbar = (props) => {
-    useEffect(() => {
-        document.addEventListener("DOMContentLoaded", function () {
-            var elems = document.querySelectorAll(".sidenav");
-            var instances = M.Sidenav.init(elems);
-        });
-    }, []);
-   
-    return ( 
-        <>
-            <nav className="navbar-fixed">
-                <nav className="nav-extended  indigo darken-4">
-                  <div className="container">
-                        <div className="nav-wrapper">
-                            <a href="#" className="brand-logo">Logo</a>
-                            <span data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></span>
-                            <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><Link to="/" href="sass.html">Home</Link></li>
-                                <li><Link to="/blog" href="badges.html">Blog</Link></li>
-                                <li><Link to="/portfolio" href="collapsible.html">Portfolio</Link></li>
-                            </ul>
-                        </div>
-                  </div>
-                </nav>
-            </nav>
+  const style = useStyles();
+  const [openDrawer, setOpenDrawer] = useState(false);
+  useEffect(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".sidenav");
+      var instances = M.Sidenav.init(elems);
+    });
+  }, []);
 
-            <ul className="sidenav  indigo darken-4" id="mobile-demo">
-                <li><Link to="/" href="sass.html">Home</Link></li>
-                <li><Link to="/blog" href="badges.html">Blog</Link></li>
-                <li><Link to="/portfolio" href="collapsible.html">Portfolio</Link></li>
-            </ul>
-        </>
-     );
-}
- 
+  const styles = {
+    paper: {
+      background: "blue",
+    },
+  };
+
+  return (
+    <>
+      <nav className="navbar-fixed">
+        <nav className="nav-extended  indigo darken-4">
+          <div className="container">
+            <div className="nav-wrapper">
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={() => setOpenDrawer(!openDrawer)}
+                  edge="start"
+                  // className={clsx(classes.menuButton, open && classes.hide)}
+                >
+                  <MenuRoundedIcon />
+                </IconButton>
+              </a>
+              <Link to="/">
+                <a style={{ fontSize: "2rem" }}> DeltaProjects</a>
+              </Link>
+              <Drawer
+                open={openDrawer}
+                anchor="right"
+                classes={{ paper: style.paper }}
+              >
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={() => setOpenDrawer(!openDrawer)}
+                  edge="start"
+                >
+                  <CancelRoundedIcon />
+                </IconButton>
+                <List style={{ width: "20rem" }}>
+                  <HomeWorkIcon
+                    button
+                    style={{ fontSize: "3rem", marginLeft: "2rem" }}
+                  />
+                  <Link
+                    to="/portfolio"
+                    onClick={() => setOpenDrawer(!openDrawer)}
+                  >
+                    <ListItem button>
+                      <WbSunnyRoundedIcon style={{ marginRight: "2rem" }} />
+                      <ListItemText>Portfolio</ListItemText>
+                    </ListItem>
+                  </Link>
+                  <Link to="/blog" onClick={() => setOpenDrawer(!openDrawer)}>
+                    <ListItem button>
+                      <InvertColorsRoundedIcon
+                        style={{ marginRight: "2rem" }}
+                      />
+                      <ListItemText>Blog</ListItemText>
+                    </ListItem>
+                  </Link>
+                  <Link to="/skill" onClick={() => setOpenDrawer(!openDrawer)}>
+                    <ListItem button>
+                      <AccountTreeOutlinedIcon
+                        style={{ marginRight: "2rem" }}
+                      />
+                      <ListItemText>Skill "&&" Expirence</ListItemText>
+                    </ListItem>
+                  </Link>
+                  <Link
+                    to="/consult"
+                    onClick={() => setOpenDrawer(!openDrawer)}
+                  >
+                    <ListItem button>
+                      <WorkOutlineOutlinedIcon
+                        style={{ marginRight: "2rem" }}
+                      />
+                      <ListItemText>Consultancy Services</ListItemText>
+                    </ListItem>
+                  </Link>
+                </List>
+              </Drawer>
+            </div>
+          </div>
+        </nav>
+      </nav>
+    </>
+  );
+};
+
 export default Navbar;
